@@ -1,0 +1,15 @@
+.gallerylist {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 32px;
+  margin-top: 10px;
+}
+
+.gallerycard {
+  width: calc((100% - 72px) / 4);
+  border: 1px solid #808080;
+  border-radius: 12px;
+}
