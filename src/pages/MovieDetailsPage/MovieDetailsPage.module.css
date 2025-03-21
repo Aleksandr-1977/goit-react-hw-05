@@ -1,0 +1,41 @@
+.movieDetailsContainer {
+  padding: 20px;
+}
+
+.backButton {
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+
+.backButton:hover {
+  background-color: #0056b3;
+}
+
+.movieInfo {
+  display: flex;
+  gap: 20px;
+}
+
+.moviePoster {
+  width: 300px;
+  border-radius: 10px;
+}
+
+.movieText {
+  max-width: 600px;
+}
+
+.movieText h1 {
+  font-size: 24px;
+}
+
+.movieText p {
+  font-size: 18px;
+  margin: 10px 0;
+}
