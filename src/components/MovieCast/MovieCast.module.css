@@ -1,0 +1,10 @@
+.cast {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.item {
+  list-style-type: none;
+  font-size: 20px;
+  text-align: center;
+}

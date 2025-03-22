@@ -23,6 +23,7 @@ export const fetchTranding = async page => {
     throw error;
   }
 };
+
 export const fetchMovieDetails = async movieId => {
   try {
     const response = await axios.get(`movie/${movieId}`, {
@@ -43,4 +44,56 @@ export const fetchMovieDetails = async movieId => {
     );
     throw error;
   }
+};
+
+export const fetchMovieCredits = async movieId => {
+  try {
+    const response = await axios.get(`movie/${movieId}/credits`, {
+      headers: {
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMWNjMmJiZmU5NzZiOGMzZTliMzVmNTM1MjE2N2U1NSIsIm5iZiI6MTc0MjI0MDc1My43Mjg5OTk5LCJzdWIiOiI2N2Q4N2JmMTEyYzk2N2UyMmNmMTU4ZTQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.1JoMVAQzOUrK6aB-gLERA7zb3A3ESpGkExVMAvkEhbk',
+      },
+      params: {
+        language: 'en-US',
+      },
+    });
+    console.log('Cast:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error(
+      'Ошибка при загрузке данных о ролях',
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};
+
+export const fetchMovieRewiews = async movieId => {
+  try {
+    const response = await axios.get(`movie/${movieId}/reviews`, {
+      headers: {
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMWNjMmJiZmU5NzZiOGMzZTliMzVmNTM1MjE2N2U1NSIsIm5iZiI6MTc0MjI0MDc1My43Mjg5OTk5LCJzdWIiOiI2N2Q4N2JmMTEyYzk2N2UyMmNmMTU4ZTQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.1JoMVAQzOUrK6aB-gLERA7zb3A3ESpGkExVMAvkEhbk',
+      },
+      params: {
+        language: 'en-US',
+      },
+    });
+    console.log('Cast:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error(
+      'Ошибка при загрузке данных обзоров',
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};
+
+export const fetchSearchMovie = async query => {
+  const resp = await axios.get('search/movie', {
+    ...options,
+    params: { query },
+  });
+  return resp.data.results;
 };

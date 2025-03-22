@@ -1,9 +1,21 @@
 import { useEffect, useState } from 'react';
 import css from './MovieDetailsPage.module.css';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  NavLink,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import { fetchMovieDetails } from '../../apiService/getAPI';
 import Loader from '../../components/Loader/Loader';
 import Error from '../../components/ErrorMessage/ErrorMessage';
+import BtnGoBack from '../../components/BtnGoBack/BtnGoBack';
+import { clsx } from 'clsx';
+
+const getLinkStyles = ({ isActive }) => {
+  return clsx(css.link, isActive && css.active);
+};
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -25,7 +37,7 @@ const MovieDetailsPage = () => {
         setLoading(true);
         const data = await fetchMovieDetails(movieId);
         setMovie(data);
-      } catch (error) {
+      } catch {
         setError(true);
       } finally {
         setLoading(false);
@@ -36,19 +48,15 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const goBack = () => {
-    navigate(location.state?.from ?? '/movies');
+    navigate(location.state?.from ?? '/');
   };
 
-  if (loading) return <Loader loading={loading} />;
-  if (error) return <Error />;
-  if (!movie) return <p>Movie not found</p>;
+  if (!movie) return <Loader loading={loading} />;
+  if (error) return <b>The resource you requested could not be found.</b>;
 
   return (
     <div className={css.movieDetailsContainer}>
-      <button onClick={goBack} className={css.backButton}>
-        Go Back
-      </button>
-
+      <BtnGoBack onClick={goBack} />
       <div className={css.movieInfo}>
         <img
           src={
@@ -77,6 +85,17 @@ const MovieDetailsPage = () => {
           </p>
         </div>
       </div>
+      <h2 className={css.text}>Additional information</h2>
+      <hr></hr>
+      <ul className={css.list}>
+        <NavLink to="cast" className={getLinkStyles}>
+          Cast
+        </NavLink>
+        <NavLink to="reviews" className={getLinkStyles}>
+          Review
+        </NavLink>
+      </ul>
+      <Outlet />
     </div>
   );
 };
