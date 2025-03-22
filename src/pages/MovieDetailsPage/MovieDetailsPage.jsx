@@ -55,7 +55,8 @@ const MovieDetailsPage = () => {
   // if (!movie) return <Loader loading={loading} />;
   if (loading) return <Loader loading={loading} />;
   if (!movie) return <Error />;
-
+  const defaultImg =
+    '<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>';
   return (
     <div className={css.movieDetailsContainer}>
       {error && <Error />}
@@ -65,8 +66,9 @@ const MovieDetailsPage = () => {
           src={
             movie.poster_path
               ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-              : 'https://via.placeholder.com/300x450'
+              : defaultImg
           }
+          width={250}
           alt={movie.title}
           className={css.moviePoster}
         />

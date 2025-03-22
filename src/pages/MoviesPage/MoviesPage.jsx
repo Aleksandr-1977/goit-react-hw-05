@@ -42,6 +42,7 @@ const MoviePage = () => {
     getMovie();
   }, [query]);
   console.log('Movie:', movie);
+
   const handleSubmit = evt => {
     evt.preventDefault();
     const nextParams = new URLSearchParams(searchParams);
