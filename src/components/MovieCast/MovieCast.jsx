@@ -29,25 +29,28 @@ const MovieCast = () => {
     getCast();
   }, [movieId]);
 
-  if (movie.cast.length === 0) return <b>No cast information available.</b>;
   return (
     <>
       {loading && <Loader loading={loading} />}
       {error && <Error />}
-      <ul className={css.cast}>
-        {movie.cast.map(cast => (
-          <li key={cast.id} className={css.item}>
-            <div>
-              <p className={css.name}>{cast.name}</p>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
-                width={250}
-                alt={cast.name}
-              />
-            </div>
-          </li>
-        ))}
-      </ul>
+      {movie.cast.length > 0 ? (
+        <ul className={css.cast}>
+          {movie.cast.map(cast => (
+            <li key={cast.id} className={css.item}>
+              <div>
+                <p className={css.name}>{cast.name}</p>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
+                  width={250}
+                  alt={cast.name}
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <b>No cast information available.</b>
+      )}
     </>
   );
 };

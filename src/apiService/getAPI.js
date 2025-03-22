@@ -12,7 +12,7 @@ const options = {
 
 export const fetchTranding = async page => {
   try {
-    const resp = await axios.get('trending/movie/day', {
+    const resp = await axios.get('/trending/movie/day', {
       params: { page },
       ...options,
     });
@@ -26,7 +26,7 @@ export const fetchTranding = async page => {
 
 export const fetchMovieDetails = async movieId => {
   try {
-    const response = await axios.get(`movie/${movieId}`, {
+    const response = await axios.get(`/movie/${movieId}`, {
       headers: {
         Authorization:
           'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMWNjMmJiZmU5NzZiOGMzZTliMzVmNTM1MjE2N2U1NSIsIm5iZiI6MTc0MjI0MDc1My43Mjg5OTk5LCJzdWIiOiI2N2Q4N2JmMTEyYzk2N2UyMmNmMTU4ZTQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.1JoMVAQzOUrK6aB-gLERA7zb3A3ESpGkExVMAvkEhbk',
@@ -48,7 +48,7 @@ export const fetchMovieDetails = async movieId => {
 
 export const fetchMovieCredits = async movieId => {
   try {
-    const response = await axios.get(`movie/${movieId}/credits`, {
+    const response = await axios.get(`/movie/${movieId}/credits`, {
       headers: {
         Authorization:
           'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMWNjMmJiZmU5NzZiOGMzZTliMzVmNTM1MjE2N2U1NSIsIm5iZiI6MTc0MjI0MDc1My43Mjg5OTk5LCJzdWIiOiI2N2Q4N2JmMTEyYzk2N2UyMmNmMTU4ZTQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.1JoMVAQzOUrK6aB-gLERA7zb3A3ESpGkExVMAvkEhbk',
@@ -70,7 +70,7 @@ export const fetchMovieCredits = async movieId => {
 
 export const fetchMovieRewiews = async movieId => {
   try {
-    const response = await axios.get(`movie/${movieId}/reviews`, {
+    const response = await axios.get(`/movie/${movieId}/reviews`, {
       headers: {
         Authorization:
           'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMWNjMmJiZmU5NzZiOGMzZTliMzVmNTM1MjE2N2U1NSIsIm5iZiI6MTc0MjI0MDc1My43Mjg5OTk5LCJzdWIiOiI2N2Q4N2JmMTEyYzk2N2UyMmNmMTU4ZTQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.1JoMVAQzOUrK6aB-gLERA7zb3A3ESpGkExVMAvkEhbk',
@@ -91,8 +91,11 @@ export const fetchMovieRewiews = async movieId => {
 };
 
 export const fetchSearchMovie = async query => {
-  const resp = await axios.get('search/movie', {
-    ...options,
+  const resp = await axios.get('/search/movie', {
+    headers: {
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMWNjMmJiZmU5NzZiOGMzZTliMzVmNTM1MjE2N2U1NSIsIm5iZiI6MTc0MjI0MDc1My43Mjg5OTk5LCJzdWIiOiI2N2Q4N2JmMTEyYzk2N2UyMmNmMTU4ZTQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.1JoMVAQzOUrK6aB-gLERA7zb3A3ESpGkExVMAvkEhbk',
+    },
     params: { query },
   });
   return resp.data.results;

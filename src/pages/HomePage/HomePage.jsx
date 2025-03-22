@@ -8,18 +8,18 @@ import Error from '../../components/ErrorMessage/ErrorMessage';
 const HomePage = () => {
   const [movie, setMovie] = useState([]);
   const [page, setPage] = useState(1);
-  const [error, setIsError] = useState(false);
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getTranding() {
       try {
-        setIsError(false);
+        setError(false);
         setLoading(true);
         const data = await fetchTranding(page);
         setMovie(() => [...data.results]);
       } catch {
-        setIsError(true);
+        setError(true);
         console.log(error);
       } finally {
         setLoading(false);

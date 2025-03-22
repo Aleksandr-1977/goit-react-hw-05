@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import css from './MovieDetailsPage.module.css';
 import {
   NavLink,
@@ -19,11 +19,12 @@ const getLinkStyles = ({ isActive }) => {
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  const location = useLocation();
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const location = useLocation();
+  const backLink = useRef(location.state);
 
   useEffect(() => {
     if (!movieId) {
@@ -48,14 +49,16 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const goBack = () => {
-    navigate(location.state?.from ?? '/');
+    navigate(backLink.current ?? '/movies');
   };
 
-  if (!movie) return <Loader loading={loading} />;
-  if (error) return <b>The resource you requested could not be found.</b>;
+  // if (!movie) return <Loader loading={loading} />;
+  if (loading) return <Loader loading={loading} />;
+  if (!movie) return <Error />;
 
   return (
     <div className={css.movieDetailsContainer}>
+      {error && <Error />}
       <BtnGoBack onClick={goBack} />
       <div className={css.movieInfo}>
         <img

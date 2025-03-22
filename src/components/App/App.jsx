@@ -1,15 +1,6 @@
-import { useState, useEffect } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
 import css from './App.module.css';
-import SearchBar from '../SearchBar/SearchBar';
-import { fetchTranding } from '../../apiService/getAPI';
-import ImageGallery from '../ImageGallery/ImageGallery';
-import Loader from '../Loader/Loader';
-import Error from '../ErrorMessage/ErrorMessage';
-import LoadMoreBtn from '../BtnGoBack/BtnGoBack';
-import ImageModal from '../ImageModal/ImageModal';
-import AppHeader from '../AppHeader/AppHeader';
 
+import AppHeader from '../AppHeader/AppHeader';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from '../../pages/HomePage/HomePage';
 import MoviePage from '../../pages/MoviesPage/MoviesPage';

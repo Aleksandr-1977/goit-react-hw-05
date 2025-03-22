@@ -1,18 +1,15 @@
-.header {
-  background-color: rgb(69, 95, 243);
-}
 .form {
   display: flex;
   gap: 10px;
-  margin: 0 auto;
-  justify-content: center;
+  /* margin: 0 auto; */
+  justify-content: left;
   padding: 5px;
 }
 
 .input {
   border-radius: 8px;
   border: 1px solid rgb(26, 25, 25);
-  min-width: 320px;
+  min-width: 250px;
   height: 40px;
   font-size: medium;
 
